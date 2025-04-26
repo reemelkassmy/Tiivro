@@ -1,0 +1,670 @@
+/* FAQ & Contact Page Styles */
+
+.page-hero {
+    background-image: url('../images/crop-hand-showing-photo-yellow-flowers.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Hero overlay - changing to white with transparency */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.75) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Section Header */
+.section-header {
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    color: var(--heading-color);
+    margin-bottom: 15px;
+}
+
+.title-underline {
+    height: 3px;
+    width: 80px;
+    background-color: var(--primary-color);
+    margin: 0 auto 20px;
+}
+
+.section-header p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+/* FAQ Section */
+/* Enhanced FAQ Section Styles */
+.faq-section {
+    padding: 90px 0;
+    background-color: #ffffff;
+    background-image: none;
+}
+
+.faq-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.faq-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.faq-item.static {
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    transition: all 0.4s ease;
+    border-left: 5px solid var(--primary-color);
+    position: relative;
+}
+
+.faq-item.static:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.faq-item.static .faq-question {
+    padding: 25px 30px;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.faq-item.static .faq-question:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(var(--primary-rgb), 0.05), transparent);
+    z-index: 0;
+}
+
+.faq-item.static .faq-question h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--heading-color);
+    position: relative;
+    z-index: 1;
+}
+
+.faq-item.static .faq-answer {
+    padding: 25px 30px;
+    background-color: #fff;
+    position: relative;
+}
+
+.faq-item.static .faq-answer p {
+    margin: 0;
+    color: #555;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+/* Enhanced Contact Section Styles */
+.contact-section {
+    padding: 90px 0;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--primary-color) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.05;
+    z-index: 0;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-info-card {
+    display: flex;
+    background-color: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: 100%;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.contact-info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+}
+
+/* Make contact image clearer by removing opacity/transparency */
+.contact-image {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.contact-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Removed any opacity settings to ensure image is clear */
+}
+
+/* Remove the overlay that was making the image less clear */
+.image-overlay {
+    display: none; /* Hide the overlay completely */
+}
+
+.contact-info-card:hover .contact-image img {
+    transform: scale(1.05);
+}
+
+.contact-details {
+    flex: 0 0 55%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(to bottom right, #fff, #ffffff);
+}
+
+.contact-method {
+    text-align: left;
+}
+
+.contact-header {
+    margin-bottom: 25px;
+}
+
+.contact-badge {
+    display: inline-block;
+    background-color: rgba(29, 195, 210, 0.1);
+    color: var(--primary-color);
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.contact-method h3 {
+    font-size: 2.2rem;
+    color: var(--heading-color);
+    margin-bottom: 10px;
+}
+
+.contact-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.contact-button {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    color: #333;
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.contact-button i {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(29, 195, 210, 0.1);
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.contact-button span {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.contact-button strong {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.contact-button small {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 3px;
+}
+
+.contact-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.contact-button:hover i {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.phone-button:hover {
+    background-color: rgba(29, 195, 210, 0.05);
+}
+
+.email-button:hover {
+    background-color: rgba(29, 195, 210, 0.05);
+}
+
+.social-connect {
+    margin-top: 10px;
+}
+
+.social-connect p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.contact-social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.contact-social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #333;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.contact-social-links a:hover {
+    transform: translateY(-5px) rotate(5deg);
+}
+
+.contact-social-links a.instagram:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    border-color: transparent;
+}
+
+.contact-social-links a.tiktok:hover {
+    background: linear-gradient(45deg, #000000, #69C9D0);
+    color: white;
+    border-color: transparent;
+}
+
+.contact-social-links a.facebook:hover {
+    background-color: #3b5998;
+    color: white;
+    border-color: transparent;
+}
+
+.contact-social-links a.twitter:hover {
+    background-color: #1DA1F2;
+    color: white;
+    border-color: transparent;
+}
+
+.contact-social-links a.whatsapp:hover {
+    background-color: #25D366;
+    color: white;
+    border-color: transparent;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+    .contact-info-card {
+        max-width: 90%;
+    }
+    
+    /* FAQ Container - change to single column on tablets */
+    .faq-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-info-card {
+        flex-direction: column;
+    }
+    
+    .contact-image, .contact-details {
+        flex: 0 0 100%;
+    }
+    
+    .contact-image {
+        height: 250px;
+    }
+    
+    .contact-method h3 {
+        font-size: 1.8rem;
+    }
+    
+    .contact-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* Section headers */
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    /* FAQ items */
+    .faq-item.static .faq-question h3 {
+        font-size: 1.1rem;
+    }
+    
+    .faq-item.static .faq-answer p {
+        font-size: 1rem;
+    }
+    
+    .faq-item.static .faq-question,
+    .faq-item.static .faq-answer {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-details {
+        padding: 30px 20px;
+    }
+    
+    .contact-button {
+        padding: 14px 16px;
+    }
+    
+    .contact-button i {
+        font-size: 1.3rem;
+        width: 35px;
+        height: 35px;
+    }
+    
+    .contact-button strong {
+        font-size: 1rem;
+    }
+    
+    .contact-social-links a {
+        width: 40px;
+        height: 40px;
+    }
+    
+    /* Hero section */
+    .page-hero {
+        height: 300px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    
+    /* Section spacing */
+    .faq-section,
+    .contact-section {
+        padding: 60px 0;
+    }
+    
+    .section-header {
+        margin-bottom: 30px;
+    }
+    
+    /* FAQ items */
+    .faq-item.static {
+        border-left-width: 3px;
+    }
+    
+    .faq-item.static .faq-question,
+    .faq-item.static .faq-answer {
+        padding: 15px;
+    }
+    
+    /* Contact buttons */
+    .contact-buttons {
+        gap: 10px;
+    }
+    
+    .contact-social-links {
+        justify-content: center;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 375px) {
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+    
+    .contact-method h3 {
+        font-size: 1.5rem;
+    }
+    
+    .contact-button i {
+        margin-right: 10px;
+    }
+    
+    .contact-button strong {
+        font-size: 0.9rem;
+    }
+    
+    .contact-button small {
+        font-size: 0.8rem;
+    }
+}
+
+/* Enhanced Hero Section with clearer image */
+.page-hero {
+    background-image: url('../images/crop-hand-showing-photo-yellow-flowers.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    display: none; /* Remove the overlay completely */
+}
+
+.hero-particles {
+    display: none; /* Remove the particles layer */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: #333; /* Changed to dark color for better visibility against clear background */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    animation: fade-up 1s ease-out;
+}
+
+.hero-content h1 {
+    font-size: 3.2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); /* Light shadow for better readability */
+    letter-spacing: 1px;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+    font-weight: 500; /* Increased weight for better visibility */
+    text-shadow: 0 1px 5px rgba(255, 255, 255, 0.5); /* Light shadow for better readability */
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.btn-whatsapp {
+    background-color: #25D366;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+    background-color: #20bd5a;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+    color: white;
+}
+
+.btn-whatsapp i {
+    font-size: 1.2rem;
+}
+
+.hero-shape {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: center;
+    z-index: 4;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .page-hero {
+        height: 400px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .btn-whatsapp, .btn-primary {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-hero {
+        height: 350px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-badge {
+        font-size: 0.8rem;
+        padding: 6px 14px;
+    }
+}
