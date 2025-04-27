@@ -1,0 +1,418 @@
+/* تحسينات خاصة بقسم "عن TIVRO" */
+.rtl .about-section .about-content {
+    flex-direction: row-reverse;
+}
+
+.rtl .about-section .about-text {
+    text-align: right;
+}
+
+.rtl .about-section .about-text h2.section-title {
+    text-align: right;
+}
+
+.rtl .about-section .about-text h2.section-title:after {
+    right: 0;
+    left: auto;
+}
+
+.rtl .about-section .button-container {
+    text-align: right;
+}
+
+.rtl .about-section .animated-bg {
+    right: -15px;
+    left: auto;
+}
+
+/* تحسين محاذاة الأزرار في القسم */
+.rtl .about-section .btn.btn-custom {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+/* تحسين الهوامش للنص العربي */
+.rtl .about-section p {
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* تحسين قسم عملية العمل للغة العربية */
+.rtl .process-steps {
+    flex-direction: row-reverse;
+}
+
+.rtl .process-step {
+    text-align: center; /* تغيير من right إلى center */
+}
+
+.rtl .process-step h3 {
+    text-align: center; /* تغيير من right إلى center */
+}
+
+.rtl .process-step p {
+    text-align: center; /* تغيير من right إلى center */
+}
+
+/* تعديل أرقام الخطوات لتتناسب مع الاتجاه من اليمين لليسار */
+/* تعديل المسافة بين الأرقام والأيقونات في قسم عملية العمل */
+.rtl .step-number {
+    top: -20px; /* زيادة المسافة للأعلى */
+    right: 50%;
+    left: auto;
+    transform: translateX(50%);
+}
+
+.rtl .step-icon {
+    margin-top: 15px; /* إضافة هامش علوي للأيقونة */
+}
+
+/* تحسين مظهر الأرقام */
+.step-number {
+    width: 35px; /* زيادة حجم دائرة الرقم */
+    height: 35px;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(29, 195, 210, 0.3);
+}
+
+/* تعديل خطوط الاتصال بين الخطوات */
+.rtl .connector-line::before {
+    right: 0;
+    left: auto;
+}
+
+.rtl .connector-line::after {
+    left: 0;
+    right: auto;
+}
+
+/* تأكيد على الاتجاه في الشاشات الصغيرة */
+@media (max-width: 992px) {
+    .rtl .process-steps {
+        flex-direction: column;
+    }
+    
+    .rtl .connector-line {
+        width: 2px;
+        height: 100%;
+    }
+    
+    .rtl .connector-line::before,
+    .rtl .connector-line::after {
+        right: 50%;
+        transform: translate(50%, 0);
+    }
+    
+    .rtl .connector-line::before {
+        top: 0;
+    }
+    
+    .rtl .connector-line::after {
+        top: auto;
+        bottom: 0;
+    }
+}
+
+/* تحسين قسم الخدمات للغة العربية */
+.rtl .services-overview .section-header {
+    text-align: center;
+}
+
+.rtl .services-overview .section-title {
+    text-align: center;
+}
+
+.rtl .service-card-inner {
+    text-align: center;
+    direction: rtl;
+}
+
+.rtl .service-card h3 {
+    text-align: center;
+}
+
+.rtl .service-card p {
+    text-align: center;
+    line-height: 1.8;
+}
+
+.rtl .service-card .btn.btn-custom {
+    margin: 15px auto 0;
+    display: block;
+    max-width: 150px;
+}
+
+/* تعديل زر "احجز الآن" ليكون بالعربية */
+.rtl .service-card .btn.btn-custom {
+    font-family: 'Cairo', sans-serif;
+}
+
+/* تحسين قسم معرض الأعمال للغة العربية */
+.rtl .portfolio-showcase .section-title {
+    text-align: center;
+}
+
+.rtl .portfolio-overlay .overlay-content {
+    text-align: center;
+}
+
+.rtl .portfolio-overlay h3 {
+    font-family: 'Cairo', sans-serif;
+    margin-bottom: 10px;
+}
+
+.rtl .portfolio-overlay .view-more {
+    font-family: 'Cairo', sans-serif;
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 4px;
+}
+
+/* تحسين قسم الباقات للغة العربية */
+.rtl .packages-highlight .packages-content {
+    flex-direction: row-reverse;
+}
+
+.rtl .packages-highlight .packages-text {
+    text-align: right;
+}
+
+.rtl .packages-highlight .section-title {
+    text-align: right;
+}
+
+.rtl .packages-highlight .button-container {
+    text-align: right;
+}
+
+.rtl .packages-highlight .animated-bg {
+    right: -15px;
+    left: auto;
+}
+
+/* تحسين قسم الأسئلة الشائعة للغة العربية */
+.rtl .faq-preview .section-header {
+    text-align: right;
+}
+
+.rtl .faq-preview .section-title {
+    text-align: center;
+}
+
+.rtl .faq-preview .faq-cta {
+    text-align: center;
+}
+
+.rtl .faq-preview .faq-question h3 {
+    text-align: right;
+    padding-right: 0;
+    padding-left: 30px;
+}
+
+.rtl .faq-preview .toggle-icon {
+    right: auto;
+    left: 0;
+}
+
+.rtl .faq-preview .faq-answer p {
+    text-align: right;
+}
+
+/* تحسين قسم CTA Banner للغة العربية */
+.rtl .cta-banner .cta-content {
+    text-align: center;
+    direction: rtl;
+}
+
+.rtl .cta-banner h2 {
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.5;
+}
+
+.rtl .cta-banner p {
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.8;
+}
+
+.rtl .cta-banner .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.rtl .cta-banner .btn-custom,
+.rtl .cta-banner .btn-outline {
+    font-family: 'Cairo', sans-serif;
+}
+
+/* تحسينات صفحة من نحن للغة العربية */
+.rtl .about-hero-content {
+    flex-direction: row-reverse;
+}
+
+.rtl .about-hero-text {
+    text-align: right;
+}
+
+.rtl .about-hero-text h3 {
+    font-family: 'Cairo', sans-serif;
+}
+
+.rtl .our-skills .skills-text {
+    text-align: right;
+}
+
+.rtl .our-skills .section-badge {
+    font-family: 'Cairo', sans-serif;
+}
+
+.rtl .skill-info {
+    display: flex;
+    justify-content: space-between;
+    direction: rtl;
+}
+
+.rtl .stats-header {
+    text-align: center;
+}
+
+.rtl .stat-item p {
+    font-family: 'Cairo', sans-serif;
+}
+
+.rtl .cta-content {
+    text-align: center;
+}
+
+.rtl .vision-mission .vision,
+.rtl .vision-mission .mission {
+    text-align: right;
+}
+
+.rtl .team .section-title {
+    text-align: center;
+}
+
+.rtl .team-member h3 {
+    text-align: center;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* تحسينات صفحة الأسئلة والتواصل للغة العربية */
+.rtl .page-hero .hero-content {
+    text-align: center;
+}
+
+.rtl .page-hero h1 {
+    font-family: 'Cairo', sans-serif;
+}
+
+.rtl .faq-section .section-header {
+    text-align: center;
+}
+
+.rtl .faq-section .section-title {
+    font-family: 'Cairo', sans-serif;
+}
+
+.rtl .faq-item {
+    text-align: right;
+    direction: rtl;
+}
+
+.rtl .faq-question h3 {
+    padding-right: 0;
+    padding-left: 30px;
+    font-family: 'Cairo', sans-serif;
+}
+
+.rtl .faq-answer p {
+    text-align: right;
+    line-height: 1.8;
+}
+
+.rtl .contact-section .section-header {
+    text-align: center;
+}
+
+.rtl .contact-section .section-title {
+    font-family: 'Cairo', sans-serif;
+}
+
+.rtl .contact-header {
+    text-align: right;
+}
+
+.rtl .contact-badge {
+    font-family: 'Cairo', sans-serif;
+}
+
+.rtl .contact-header h3 {
+    font-family: 'Cairo', sans-serif;
+}
+
+.rtl .contact-subtitle {
+    font-family: 'Cairo', sans-serif;
+}
+
+.rtl .contact-button {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.rtl .contact-button i {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+.rtl .social-connect {
+    text-align: right;
+}
+
+.rtl .contact-social-links {
+    justify-content: flex-start;
+}
+
+/* تحسين قسم الباقات للغة العربية */
+.rtl .page-banner .banner-content {
+    text-align: center;
+}
+
+.rtl .pricing-title {
+    text-align: center;
+    font-family: 'Cairo', sans-serif;
+}
+
+.rtl .pricing-card {
+    text-align: right;
+}
+
+.rtl .card-title {
+    font-family: 'Cairo', sans-serif;
+    text-align: center;
+}
+
+.rtl .card-features li {
+    padding-right: 25px;
+    padding-left: 0;
+    position: relative;
+}
+
+.rtl .card-features li i {
+    position: absolute;
+    right: 0;
+    left: auto;
+}
+
+.rtl .card-price {
+    text-align: center;
+    direction: ltr;
+    display: inline-block;
+}
+
+.rtl .note {
+    font-size: 0.8em;
+    color: #777;
+    margin-right: 5px;
+}
