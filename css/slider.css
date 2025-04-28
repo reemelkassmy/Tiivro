@@ -7,6 +7,7 @@
     height: 100%;
     overflow: hidden;
     z-index: 1;
+    background-color: #000; /* Adding black background to the slider container */
 }
 
 .hero-slider .slide {
@@ -37,7 +38,7 @@
 }
 
 .hero-content h1 {
-    font-size: 3rem;
+    font-size: rem;
     margin-bottom: 30px;
     animation: fadeInUp 1s ease-out;
 }
@@ -60,7 +61,7 @@
     }
 }
 
-/* Responsive adjustments */
+/* Enhanced responsive adjustments */
 @media (max-width: 768px) {
     .hero-content h1 {
         font-size: 2rem;
@@ -69,5 +70,32 @@
     .cta-buttons {
         flex-direction: column;
         align-items: center;
+    }
+    
+    /* Improve image display on mobile */
+    .hero-slider .slide {
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    
+    .hero {
+        height: 70vh; /* Adjust height for mobile */
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .hero {
+        height: 60vh;
+    }
+    
+    .hero-slider .slide {
+        background-size: cover;
+        background-position: center top;
+    }
+    
+    .hero-content {
+        padding: 60px 15px;
     }
 }
