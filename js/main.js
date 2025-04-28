@@ -4,66 +4,168 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Hero Slider Functionality with TIVRO brand colors
+    // Hero Slider Functionality
     const slides = document.querySelectorAll('.hero-slider .slide');
     let currentSlide = 0;
+    let slideInterval;
+    let isTransitioning = false;
     
-    // Function to change slides with brand-appropriate transitions
-    function nextSlide() {
-        // Remove active class from current slide
-        slides[currentSlide].classList.remove('active');
+    // Function to show specific slide with transition handling
+    function showSlide(index) {
+        if (isTransitioning) return;
+        isTransitioning = true;
         
-        // Calculate next slide index
-        currentSlide = (currentSlide + 1) % slides.length;
+        // Remove active class from all slides
+        slides.forEach((slide) => {
+            slide.classList.remove('active');
+        });
         
-        // Add active class to next slide
-        slides[currentSlide].classList.add('active');
+        // Add active class to target slide
+        slides[index].classList.add('active');
+        
+        // Reset transition lock after animation completes
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 1000);
     }
     
-    // Set interval for automatic slide transition
+    // Function to change to next slide
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+    
+    // Function to change to previous slide
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+    
+    // Functions to control slideshow
+    function startSlideshow() {
+        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+    
+    function stopSlideshow() {
+        clearInterval(slideInterval);
+    }
+    
+    // Set up slider if slides exist
     if (slides.length > 0) {
         // Initialize first slide
         slides[0].classList.add('active');
+        
+        // Add touch support for mobile devices
+        const heroSlider = document.querySelector('.hero-slider');
+        if (heroSlider) {
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            heroSlider.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+                stopSlideshow(); // Pause slideshow on touch
+            }, { passive: true });
+
+            heroSlider.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                startSlideshow(); // Resume slideshow after touch
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeThreshold = 50; // Minimum distance to consider as swipe
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe left - next slide
+                    nextSlide();
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe right - previous slide
+                    prevSlide();
+                }
+            }
+        }
+        
         // Start automatic slideshow
-        setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        startSlideshow();
     }
     
     // Mobile Navigation Toggle
     const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
+    const nav = document.querySelector('nav');
     
     if (hamburger) {
+        // Make sure hamburger is visible on mobile
+        if (window.innerWidth <= 992) {
+            hamburger.style.display = 'flex';
+        }
+        
         hamburger.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            nav.classList.toggle('active');
+            
+            // Prevent scrolling when menu is open
+            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Update hamburger visibility on resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth <= 992) {
+                hamburger.style.display = 'flex';
+            } else {
+                hamburger.style.display = 'none';
+                nav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
     }
     
-    // Close mobile menu when clicking a link
-    const navItems = document.querySelectorAll('.nav-links a');
-    navItems.forEach(item => {
-        item.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-        });
-    });
+    // FAQ Accordion functionality
+    const faqQuestions = document.querySelectorAll('.faq-question');
     
-    // FAQ Accordion
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
+    faqQuestions.forEach(question => {
         question.addEventListener('click', function() {
-            // Close all other items
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                }
-            });
+            const faqItem = this.closest('.faq-item');
+            const answer = this.nextElementSibling;
             
             // Toggle current item
-            item.classList.toggle('active');
+            answer.classList.toggle('active');
+            faqItem.classList.toggle('expanded');
+            
+            // Update icon rotation
+            const icon = this.querySelector('.toggle-icon i');
+            if (icon) {
+                if (answer.classList.contains('active')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0)';
+                }
+            }
+            
+            // Optional: Close other items when opening a new one
+            if (answer.classList.contains('active')) {
+                document.querySelectorAll('.faq-answer.active').forEach(openAnswer => {
+                    if (openAnswer !== answer) {
+                        openAnswer.classList.remove('active');
+                        const otherItem = openAnswer.closest('.faq-item');
+                        otherItem.classList.remove('expanded');
+                        
+                        // Reset other icons
+                        const otherIcon = otherItem.querySelector('.toggle-icon i');
+                        if (otherIcon) {
+                            otherIcon.style.transform = 'rotate(0)';
+                        }
+                    }
+                });
+            }
         });
     });
     
@@ -215,137 +317,53 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', toggleStickyHeader);
     toggleStickyHeader(); // Initial check
-});
-
-// FAQ Accordion functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const faqQuestions = document.querySelectorAll('.faq-question');
     
-    faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-            const faqItem = this.closest('.faq-item');
-            const answer = this.nextElementSibling;
-            
-            // Toggle current item
-            answer.classList.toggle('active');
-            faqItem.classList.toggle('expanded');
-            
-            // Update icon rotation
-            const icon = this.querySelector('.toggle-icon i');
-            if (icon) {
-                if (answer.classList.contains('active')) {
-                    icon.style.transform = 'rotate(180deg)';
-                } else {
-                    icon.style.transform = 'rotate(0)';
-                }
-            }
-            
-            // Optional: Close other items when opening a new one
-            if (answer.classList.contains('active')) {
-                document.querySelectorAll('.faq-answer.active').forEach(openAnswer => {
-                    if (openAnswer !== answer) {
-                        openAnswer.classList.remove('active');
-                        const otherItem = openAnswer.closest('.faq-item');
-                        otherItem.classList.remove('expanded');
-                        
-                        // Reset other icons
-                        const otherIcon = otherItem.querySelector('.toggle-icon i');
-                        if (otherIcon) {
-                            otherIcon.style.transform = 'rotate(0)';
-                        }
-                    }
-                });
-            }
-        });
-    });
-});
-
-// Check if page has RTL content (Arabic)
-const htmlElement = document.documentElement;
-if (htmlElement.lang === 'ar') {
-    document.body.classList.add('rtl');
-    
-    // Adjust FAQ container for RTL
-    const faqContainer = document.querySelector('.faq-accordion');
-    if (faqContainer) {
-        faqContainer.classList.add('rtl-support');
-    }
-}
-
-// Initialize two-column layout for larger screens
-function setupFaqColumns() {
-    const faqAccordion = document.querySelector('.faq-accordion');
-    if (!faqAccordion) return;
-    
-    const faqItems = faqAccordion.querySelectorAll('.faq-item');
-    if (faqItems.length < 3) return;
-    
-    // Only apply columns on larger screens
-    if (window.innerWidth >= 768) {
-        const leftColumn = document.createElement('div');
-        leftColumn.className = 'faq-column faq-column-left';
+    // Check if page has RTL content (Arabic)
+    if (htmlElement.lang === 'ar') {
+        document.body.classList.add('rtl');
         
-        const rightColumn = document.createElement('div');
-        rightColumn.className = 'faq-column faq-column-right';
-        
-        // Distribute items between columns
-        faqItems.forEach((item, index) => {
-            if (index % 2 === 0) {
-                leftColumn.appendChild(item);
-            } else {
-                rightColumn.appendChild(item);
-            }
-        });
-        
-        // Clear and append columns
-        faqAccordion.innerHTML = '';
-        faqAccordion.appendChild(leftColumn);
-        faqAccordion.appendChild(rightColumn);
-    }
-}
-
-// Run on load and resize
-setupFaqColumns();
-window.addEventListener('resize', setupFaqColumns);
-
-// Mobile Navigation Toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('nav');
-    
-    if (hamburger) {
-        // Make sure hamburger is visible on mobile
-        if (window.innerWidth <= 992) {
-            hamburger.style.display = 'flex';
+        // Adjust FAQ container for RTL
+        const faqContainer = document.querySelector('.faq-accordion');
+        if (faqContainer) {
+            faqContainer.classList.add('rtl-support');
         }
-        
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            nav.classList.toggle('active');
-            
-            // Prevent scrolling when menu is open
-            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
-        });
-        
-        // Close menu when clicking on a link
-        const navLinks = document.querySelectorAll('.nav-links a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                nav.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-        
-        // Update hamburger visibility on resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth <= 992) {
-                hamburger.style.display = 'flex';
-            } else {
-                hamburger.style.display = 'none';
-                nav.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
     }
+    
+    // Initialize two-column layout for larger screens
+    function setupFaqColumns() {
+        const faqAccordion = document.querySelector('.faq-accordion');
+        if (!faqAccordion) return;
+        
+        const faqItems = faqAccordion.querySelectorAll('.faq-item');
+        if (faqItems.length < 3) return;
+        
+        // Only apply columns on larger screens
+        if (window.innerWidth >= 768) {
+            const leftColumn = document.createElement('div');
+            leftColumn.className = 'faq-column faq-column-left';
+            
+            const rightColumn = document.createElement('div');
+            rightColumn.className = 'faq-column faq-column-right';
+            
+            // Distribute items between columns
+            faqItems.forEach((item, index) => {
+                if (index % 2 === 0) {
+                    leftColumn.appendChild(item);
+                } else {
+                    rightColumn.appendChild(item);
+                }
+            });
+            
+            // Clear and append columns
+            faqAccordion.innerHTML = '';
+            faqAccordion.appendChild(leftColumn);
+            faqAccordion.appendChild(rightColumn);
+        }
+    }
+    
+    // Run on load and resize
+    setupFaqColumns();
+    window.addEventListener('resize', setupFaqColumns);
 });
+
+// Define htmlElement at the global scope for use in the DOMContentLoaded event
